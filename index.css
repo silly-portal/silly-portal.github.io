@@ -1,0 +1,393 @@
+:root {
+  --pink: #ffb8d2;
+  --pink-light: #fff0f6;
+  --pink-deep: #e878a5;
+  --lilac: #e9dcff;
+  --ink: #67495b;
+  --muted: #a7899a;
+  --white: rgba(255, 255, 255, 0.85);
+  --shadow: 0 12px 32px rgba(213, 126, 164, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  padding: 30px 16px;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 15%, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 83% 27%, #fff 0 3px, transparent 4px),
+    linear-gradient(145deg, #fff5f9 0%, #ffe3ef 48%, #f2eaff 100%);
+  background-size: 90px 90px, 130px 130px, auto;
+}
+
+/* メインカード */
+.portal {
+  position: relative;
+  width: min(100%, 460px);
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 70px rgba(207, 129, 166, 0.18);
+}
+
+.portal::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    #ffbad5,
+    #d9c3ff,
+    #ffc9df
+  );
+}
+
+/* ウィンドウ風ヘッダー */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 25px;
+  color: #c39aae;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffc1d8;
+}
+
+.dots i:nth-child(2) {
+  background: #e4cfff;
+}
+
+.dots i:nth-child(3) {
+  background: #ffe3ac;
+}
+
+/* プロフィール */
+.profile {
+  padding: 5px 0 25px;
+  text-align: center;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 16px;
+  border: 4px solid #fff;
+  border-radius: 30px;
+  background: linear-gradient(145deg, #ffd7e7, #e9ddff);
+  box-shadow: 0 8px 22px rgba(218, 132, 171, 0.22);
+  font-size: 42px;
+  transform: rotate(-4deg);
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: rotate(4deg) scale(1.06);
+}
+
+h1 {
+  margin: 0;
+  color: #67495b;
+  font-size: clamp(30px, 8vw, 38px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  margin: 9px 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.bio {
+  color: #987d8d;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* リンク一覧の見出し */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 2px 13px;
+  color: #b0849b;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.17em;
+}
+
+.section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #f0d6e3;
+}
+
+/* SNSリンク */
+.links {
+  display: grid;
+  gap: 11px;
+}
+
+.link {
+  --accent: #f5a9c8;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 65px;
+  padding: 12px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 17px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+
+  box-shadow: 0 4px 13px rgba(207, 129, 166, 0.06);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+
+/* ホバー時のピンクグラデーション */
+.link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 184, 210, 0.22),
+    transparent 75%
+  );
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.link:hover::before,
+.link:focus-visible::before {
+  opacity: 1;
+}
+
+.link:hover,
+.link:focus-visible {
+  transform: translateY(-3px) scale(1.015);
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(207, 129, 166, 0.18);
+  outline: none;
+}
+
+.icon,
+.details,
+.arrow {
+  position: relative;
+  z-index: 1;
+}
+
+/* アイコンボックス */
+.icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  background: var(--icon-bg, #fff0f6);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* リンクごとのテーマカラー */
+.discord {
+  --accent: #b9b8ff;
+  --icon-bg: #eeedff;
+}
+
+.tiktok {
+  --accent: #a9e8e6;
+  --icon-bg: #e5f9f7;
+}
+
+.x {
+  --accent: #cfc7ff;
+  --icon-bg: #f0edff;
+}
+
+.spotify {
+  --accent: #b8e8c6;
+  --icon-bg: #e8f8ec;
+}
+
+.soundcloud {
+  --accent: #ffc49f;
+  --icon-bg: #fff0e5;
+}
+
+.roblox {
+  --accent: #ffc1d7;
+  --icon-bg: #fff0f6;
+}
+
+/* リンクのテキスト */
+.details {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.description {
+  display: block;
+  margin-top: 2px;
+  color: #b097a5;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* 外部リンク矢印 */
+.arrow {
+  color: #cda5b9;
+  font-size: 18px;
+  transition:
+    transform 0.22s ease,
+    color 0.22s ease;
+}
+
+.link:hover .arrow {
+  color: var(--pink-deep);
+  transform: translate(3px, -2px);
+}
+
+/* キラキラ装飾 */
+.sparkle {
+  position: fixed;
+  color: #ef91b7;
+  opacity: 0.75;
+  pointer-events: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.sparkle.one {
+  top: 9%;
+  left: 8%;
+  font-size: 25px;
+}
+
+.sparkle.two {
+  top: 18%;
+  right: 8%;
+  animation-delay: -1s;
+}
+
+.sparkle.three {
+  bottom: 10%;
+  right: 10%;
+  font-size: 25px;
+  animation-delay: -2s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+/* フッター */
+footer {
+  padding-top: 22px;
+  color: #bd9aac;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+footer span {
+  color: var(--pink-deep);
+}
+
+/* スマホ対応 */
+@media (max-width: 420px) {
+  body {
+    padding: 18px 11px;
+  }
+
+  .portal {
+    padding: 19px;
+    border-radius: 25px;
+  }
+
+  .link {
+    padding: 11px 12px;
+  }
+
+  .sparkle.one {
+    left: 3%;
+  }
+
+  .sparkle.two {
+    right: 3%;
+  }
+}
+
+/* 動きを減らす設定を使っている端末への配慮 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
